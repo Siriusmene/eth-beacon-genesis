@@ -81,4 +81,4 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
 
-replace github.com/ethereum/go-ethereum => github.com/ethereum/go-ethereum v1.16.3-0.20260316125346-9a91c4c955bd
+replace github.com/ethereum/go-ethereum => github.com/ethereum/go-ethereum v1.17.3-0.20260420121338-23a6adbcee72
