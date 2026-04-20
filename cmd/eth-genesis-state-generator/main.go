@@ -6,9 +6,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/attestantio/go-eth2-client/http"
-	"github.com/attestantio/go-eth2-client/spec/phase0"
 	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/ethpandaops/go-eth2-client/http"
+	"github.com/ethpandaops/go-eth2-client/spec/phase0"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli/v3"
 

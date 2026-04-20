@@ -3,14 +3,16 @@ package beaconchain
 import (
 	"fmt"
 
-	"github.com/attestantio/go-eth2-client/http"
-	"github.com/attestantio/go-eth2-client/spec"
-	"github.com/attestantio/go-eth2-client/spec/altair"
-	"github.com/attestantio/go-eth2-client/spec/bellatrix"
-	"github.com/attestantio/go-eth2-client/spec/gloas"
-	"github.com/attestantio/go-eth2-client/spec/phase0"
 	"github.com/ethereum/go-ethereum/core"
 	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/ethpandaops/go-eth2-client/http"
+	"github.com/ethpandaops/go-eth2-client/spec"
+	"github.com/ethpandaops/go-eth2-client/spec/altair"
+	"github.com/ethpandaops/go-eth2-client/spec/bellatrix"
+	"github.com/ethpandaops/go-eth2-client/spec/capella"
+	"github.com/ethpandaops/go-eth2-client/spec/electra"
+	"github.com/ethpandaops/go-eth2-client/spec/gloas"
+	"github.com/ethpandaops/go-eth2-client/spec/phase0"
 	"github.com/sirupsen/logrus"
 
 	"github.com/ethpandaops/eth-beacon-genesis/beaconconfig"
@@ -68,6 +70,13 @@ func (b *gloasBuilder) BuildState() (*spec.VersionedBeaconState, error) {
 		syncCommitteeMaskBytes++
 	}
 
+	emptyExecutionRequests := &electra.ExecutionRequests{}
+
+	executionRequestsRoot, err := b.dynSsz.HashTreeRoot(emptyExecutionRequests)
+	if err != nil {
+		return nil, fmt.Errorf("failed to compute empty execution requests root: %w", err)
+	}
+
 	genesisBlockBody := &gloas.BeaconBlockBody{
 		ETH1Data: &phase0.ETH1Data{
 			BlockHash: make([]byte, 32),
@@ -79,6 +88,7 @@ func (b *gloasBuilder) BuildState() (*spec.VersionedBeaconState, error) {
 			Message:   &gloas.ExecutionPayloadBid{},
 			Signature: phase0.BLSSignature(make([]byte, 96)),
 		},
+		ParentExecutionRequests: emptyExecutionRequests,
 	}
 
 	genesisBlockBodyRoot, err := b.dynSsz.HashTreeRoot(genesisBlockBody)
@@ -157,10 +167,12 @@ func (b *gloasBuilder) BuildState() (*spec.VersionedBeaconState, error) {
 		ProposerLookahead:           proposers,
 		Builders:                    clBuilders,
 		LatestExecutionPayloadBid: &gloas.ExecutionPayloadBid{
-			BlockHash: phase0.Hash32(genesisBlockHash),
+			BlockHash:             phase0.Hash32(genesisBlockHash),
+			ExecutionRequestsRoot: executionRequestsRoot,
 		},
 		ExecutionPayloadAvailability: beaconutils.MakeAllOnesBitvector(blocksPerHistoricalRoot),
 		BuilderPendingPayments:       emptyBuilderPendingPayments,
+		PayloadExpectedWithdrawals:   []*capella.Withdrawal{},
 		LatestBlockHash:              phase0.Hash32(genesisBlockHash),
 		PTCWindow:                    ptcWindow,
 	}

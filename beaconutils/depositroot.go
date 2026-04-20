@@ -1,7 +1,7 @@
 package beaconutils
 
 import (
-	"github.com/attestantio/go-eth2-client/spec/phase0"
+	"github.com/ethpandaops/go-eth2-client/spec/phase0"
 	"github.com/pk910/dynamic-ssz/sszutils"
 
 	"github.com/ethpandaops/eth-beacon-genesis/beaconconfig"
