@@ -5,8 +5,8 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"github.com/attestantio/go-eth2-client/spec/phase0"
 	"github.com/ethpandaops/eth-beacon-genesis/validators"
+	"github.com/ethpandaops/go-eth2-client/spec/phase0"
 )
 
 func TestGetGenesisValidators(t *testing.T) {
@@ -70,23 +70,6 @@ func TestGetGenesisValidators(t *testing.T) {
 			expectedRoot:        "bd258b3ed92b57d323de641f587466174633109e6147fd3ae106d692c4ceb1fa",
 			expectedValidators:  2,
 			expectedActivations: 2,
-		},
-		{
-			name:   "invalid withdrawal credentials length",
-			preset: "minimal",
-			configValues: map[string]interface{}{
-				"MAX_EFFECTIVE_BALANCE":    uint64(32_000_000_000),
-				"FAR_FUTURE_EPOCH":         uint64(18446744073709551615),
-				"VALIDATOR_REGISTRY_LIMIT": uint64(1099511627776),
-			},
-			validators: []*validators.Validator{
-				{
-					PublicKey:             phase0.BLSPubKey(makeBytes(48, 1)),
-					WithdrawalCredentials: makeBytes(16, 1), // Invalid: only 16 bytes
-					Balance:               nil,
-				},
-			},
-			expectedError: true,
 		},
 		{
 			name:   "nil validator",

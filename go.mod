@@ -3,8 +3,8 @@ module github.com/ethpandaops/eth-beacon-genesis
 go 1.25.0
 
 require (
-	github.com/attestantio/go-eth2-client v0.26.0
 	github.com/ethereum/go-ethereum v1.17.2
+	github.com/ethpandaops/go-eth2-client v0.1.0
 	github.com/herumi/bls-eth-go-binary v1.37.0
 	github.com/holiman/uint256 v1.3.2
 	github.com/pk910/dynamic-ssz v1.3.0
@@ -19,6 +19,7 @@ require (
 
 require (
 	github.com/Microsoft/go-winio v0.6.2 // indirect
+	github.com/OffchainLabs/go-bitfield v0.0.0-20251031151322-f427d04d8506 // indirect
 	github.com/ProjectZKM/Ziren/crates/go-runtime/zkvm_runtime v0.0.0-20251001021608-1fe7b43fc4d6 // indirect
 	github.com/StackExchange/wmi v1.2.1 // indirect
 	github.com/VictoriaMetrics/fastcache v1.13.0 // indirect
@@ -58,7 +59,6 @@ require (
 	github.com/prometheus/client_model v0.3.0 // indirect
 	github.com/prometheus/common v0.42.0 // indirect
 	github.com/prometheus/procfs v0.10.1 // indirect
-	github.com/prysmaticlabs/go-bitfield v0.0.0-20240618144021-706c95b2dd15 // indirect
 	github.com/r3labs/sse/v2 v2.10.0 // indirect
 	github.com/rs/zerolog v1.32.0 // indirect
 	github.com/shirou/gopsutil v3.21.4-0.20210419000835-c7a38de76ee5+incompatible // indirect
@@ -81,4 +81,4 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
 
-replace github.com/attestantio/go-eth2-client => github.com/attestantio/go-eth2-client v0.0.0-20250721122214-dc2928832acc
+replace github.com/ethereum/go-ethereum => github.com/ethereum/go-ethereum v1.17.3-0.20260421080339-499762852cf2
