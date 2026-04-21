@@ -4,7 +4,7 @@ go 1.25.0
 
 require (
 	github.com/ethereum/go-ethereum v1.17.2
-	github.com/ethpandaops/go-eth2-client v0.0.2-0.20260420095341-76d6596ff4bc
+	github.com/ethpandaops/go-eth2-client v0.1.0
 	github.com/herumi/bls-eth-go-binary v1.37.0
 	github.com/holiman/uint256 v1.3.2
 	github.com/pk910/dynamic-ssz v1.3.0
