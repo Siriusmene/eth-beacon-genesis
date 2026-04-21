@@ -5,8 +5,8 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"github.com/attestantio/go-eth2-client/spec/phase0"
 	"github.com/ethpandaops/eth-beacon-genesis/validators"
+	"github.com/ethpandaops/go-eth2-client/spec/phase0"
 )
 
 func TestGetGenesisValidators(t *testing.T) {
