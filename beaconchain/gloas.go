@@ -167,7 +167,7 @@ func (b *gloasBuilder) BuildState() (*spec.VersionedBeaconState, error) {
 		ProposerLookahead:           proposers,
 		Builders:                    clBuilders,
 		LatestExecutionPayloadBid: &gloas.ExecutionPayloadBid{
-			BlockHash:             phase0.Hash32(genesisBlockHash),
+			ParentBlockHash:       phase0.Hash32(genesisBlockHash),
 			ExecutionRequestsRoot: executionRequestsRoot,
 		},
 		ExecutionPayloadAvailability: beaconutils.MakeAllOnesBitvector(blocksPerHistoricalRoot),
