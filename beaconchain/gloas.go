@@ -85,10 +85,7 @@ func (b *gloasBuilder) BuildState() (*spec.VersionedBeaconState, error) {
 			SyncCommitteeBits: make([]byte, syncCommitteeMaskBytes),
 		},
 		SignedExecutionPayloadBid: &gloas.SignedExecutionPayloadBid{
-			Message: &gloas.ExecutionPayloadBid{
-				ParentBlockHash:       phase0.Hash32(genesisBlockHash),
-				ExecutionRequestsRoot: executionRequestsRoot,
-			},
+			Message:   &gloas.ExecutionPayloadBid{},
 			Signature: phase0.BLSSignature(make([]byte, 96)),
 		},
 		ParentExecutionRequests: emptyExecutionRequests,
